@@ -1,0 +1,34 @@
+{% extends "catalog.html" %}
+{% block content %}
+    <h1 class="cover-heading">
+    	{% if request.session.lang = 'en-us'%} 	
+    		Welcome to Django online store.
+    	{% else %}
+    		Добро пожаловать.
+    	{% endif %}
+    </h1>
+    <p class="lead">
+    	{% if request.session.lang = 'en-us'%} 
+    		Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua
+    	{% else %}
+    		Тут должна быть какая-то информация ("наш магазин самый лучший" и т.д.)
+    	{% endif %}
+        <br/>
+        <small>	
+        {% if request.session.lang = 'en-us'%} 
+          <a href = "/ru/">Русская версия</a> 
+        {% else %} 
+          <a href = "/en/">English version</a>
+        {% endif %}  
+        </small>  
+    </p>
+    <p class="lead">
+        <a href="/catalog/" class="btn btn-lg btn-default">
+        	{% if request.session.lang = 'en-us'%} 
+        		Start now
+        	{% else %}
+        		Начать
+        	{% endif %}	
+        </a>
+    </p>
+{% endblock %}

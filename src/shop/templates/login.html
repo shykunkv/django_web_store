@@ -1,0 +1,74 @@
+{% extends "catalog.html" %}
+
+{% block content %}
+
+{% if form.errors %}
+	<ul>
+		<li>
+			{% if request.session.lang = 'en-us'%} 
+				You entered an invalid username or password.
+			{% else %}
+				Вы ввели неправильный логин или пароль.
+			{% endif %}
+		</li>
+	</ul>
+	<br/>
+{% endif %}
+
+<style>
+				table, th, td, tr {
+					padding: 5px;
+				}
+				input {
+					color:black;
+				}
+</style>
+
+<form method = "POST" action = "{% url 'django.contrib.auth.views.login' %}">
+
+	<table summary = "Login" id = "login"> 
+
+		<caption><p>{% if request.session.lang = 'en-us'%} Login {% else %} Вход {% endif %}</p></caption>
+		<tr>
+			<td>
+				{% if request.session.lang = 'en-us'%}
+					{{ form.username.label_tag }}
+				{% else %}
+					Имя пользователя:
+				{% endif %}
+			</td>
+			<td>{{ form.username }}</td>
+		</tr>
+		<tr>
+			<td>
+				{% if request.session.lang = 'en-us'%}
+					{{ form.password.label_tag }}
+				{% else %}
+					Пароль:
+				{% endif %}
+			</td>
+			<td>{{ form.password }}</td>
+		</tr>
+		<tr>
+			<td colspan = "2">
+				{% if request.session.lang = 'en-us'%}
+					<input type = "submit" value = "Login" class="btn btn-default"/>
+				{% else %}
+					<input type = "submit" value = "Вход" class="btn btn-default"/>
+				{% endif %}
+			</td>
+			<td colspan = "2">
+				<a href="/accounts/register/" class="btn btn-default">
+					{% if request.session.lang = 'en-us'%} 
+						Register
+					{% else %}
+						Регистрация
+					{% endif %}
+				</a>
+			</td>
+		</tr>
+	</table>
+	<input type = "hidden" name = "text" value = "{{ next }}" />
+</form>
+
+{% endblock %}

@@ -1,0 +1,65 @@
+{% extends "base.html" %}
+
+
+
+{% block content %}
+
+<div class = "container-fluid">
+	<div class="row">
+		<div class="col-md-3"></div>
+		<div class="col-md-9">
+			<h1 class="cover-heading">
+				{% block name %} 
+					{% if request.session.lang = 'en-us'%} 
+						Hot products 
+					{% else %}
+						Горячие предложения 
+					{% endif %}
+				{% endblock %}
+			</h1><br/></br>
+		</div>		
+	</div>
+	<div class = "row">
+		<div class="col-sm-3">
+			{% for c in active_categories %}
+				<div class = "row">
+					<h3 class="masthead-brand"><a href = "{{ c.get_absolute_url }}">
+						{% if request.session.lang = 'en-us'%}
+							{{ c.name }}
+						{% else %}
+							{{ c.r_name }}
+						{% endif %}
+					</a></h3>
+				</div>
+			{% endfor %}	
+		</div>
+		{% block products %}
+		<div class="col-sm-9">		
+			<div class="col-md-4">
+				{% if request.session.lang = 'en-us'%}
+					Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+				{% else %}
+					Тут должно быть описание каких-то горячих продуктов или категорий (Или еще что-то)...
+				{% endif %}
+			</div>
+			<div class="col-md-4">
+				{% if request.session.lang = 'en-us'%}
+					Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+				{% else %}
+					Тут должно быть описание каких-то горячих продуктов или категорий (Или еще что-то)...
+				{% endif %}
+			</div>
+			<div class="col-md-4">
+				{% if request.session.lang = 'en-us'%}
+					Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+				{% else %}
+					Тут должно быть описание каких-то горячих продуктов или категорий (Или еще что-то)...
+				{% endif %}
+			</div>
+		</div>
+		{% endblock %}
+	</div>
+</div>
+
+
+{% endblock %}
